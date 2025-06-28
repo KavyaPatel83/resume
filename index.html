@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CareerCraft - Professional Resume & Cover Letter Builder</title>
+    <link rel="stylesheet" href="static/css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-brand">
+                <i class="fas fa-file-alt"></i>
+                <span>CareerCraft</span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="#home" class="nav-link active">Home</a></li>
+                <li><a href="#resume" class="nav-link">Resume Builder</a></li>
+                <li><a href="#cover-letter" class="nav-link">Cover Letter</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Home Section -->
+    <section id="home" class="section active">
+        <div class="hero">
+            <div class="hero-content">
+                <h1>Create Professional Documents with <span class="gradient-text">AI Power</span></h1>
+                <p>Generate stunning resumes and compelling cover letters tailored to your dream job. Our AI-powered platform creates professional documents in minutes.</p>
+                <div class="hero-buttons">
+                    <button class="btn btn-primary" onclick="showSection('resume')">
+                        <i class="fas fa-file-alt"></i>
+                        Build Resume
+                    </button>
+                    <button class="btn btn-secondary" onclick="showSection('cover-letter')">
+                        <i class="fas fa-envelope"></i>
+                        Write Cover Letter
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div class="features">
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-magic"></i>
+                </div>
+                <h3>AI-Powered Content</h3>
+                <p>Our advanced AI analyzes your information and generates professional, tailored content that highlights your strengths.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-download"></i>
+                </div>
+                <h3>Professional PDFs</h3>
+                <p>Download your documents as high-quality PDFs with professional formatting ready for any application.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-bolt"></i>
+                </div>
+                <h3>Lightning Fast</h3>
+                <p>Create professional documents in minutes, not hours. Our streamlined process gets you job-ready faster.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Resume Builder Section -->
+    <section id="resume" class="section">
+        <div class="section-header">
+            <h1>Resume Builder</h1>
+            <p>Create a professional resume that gets you noticed by employers.</p>
+        </div>
+
+        <div class="builder-container">
+            <div class="form-section">
+                <div class="form-card">
+                    <div class="form-header">
+                        <i class="fas fa-user"></i>
+                        <h2>Personal Information</h2>
+                    </div>
+                    <form id="resume-form">
+                        <div class="form-group">
+                            <label for="fullName">Full Name *</label>
+                            <input type="text" id="fullName" name="fullName" required>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="email">Email *</label>
+                                <input type="email" id="email" name="email" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="phone">Phone</label>
+                                <input type="tel" id="phone" name="phone">
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="location">Location</label>
+                                <input type="text" id="location" name="location">
+                            </div>
+                            <div class="form-group">
+                                <label for="linkedin">LinkedIn</label>
+                                <input type="url" id="linkedin" name="linkedin">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="targetRole">Target Role</label>
+                            <input type="text" id="targetRole" name="targetRole" placeholder="Software Engineer, Marketing Manager, etc.">
+                        </div>
+
+                        <!-- Education Section -->
+                        <div class="section-divider">
+                            <i class="fas fa-graduation-cap"></i>
+                            <h3>Education</h3>
+                            <button type="button" class="btn-add" onclick="addEducation()">
+                                <i class="fas fa-plus"></i> Add
+                            </button>
+                        </div>
+                        <div id="education-container"></div>
+
+                        <!-- Experience Section -->
+                        <div class="section-divider">
+                            <i class="fas fa-briefcase"></i>
+                            <h3>Work Experience</h3>
+                            <button type="button" class="btn-add" onclick="addExperience()">
+                                <i class="fas fa-plus"></i> Add
+                            </button>
+                        </div>
+                        <div id="experience-container"></div>
+
+                        <!-- Skills Section -->
+                        <div class="section-divider">
+                            <i class="fas fa-cogs"></i>
+                            <h3>Skills</h3>
+                            <button type="button" class="btn-add" onclick="addSkill()">
+                                <i class="fas fa-plus"></i> Add
+                            </button>
+                        </div>
+                        <div id="skills-container"></div>
+
+                        <div class="form-actions">
+                            <button type="button" class="btn btn-primary" onclick="generateResume()">
+                                <i class="fas fa-magic"></i>
+                                Generate Resume
+                            </button>
+                            <button type="button" class="btn btn-success" onclick="downloadResumePDF()" id="download-resume-btn" style="display: none;">
+                                <i class="fas fa-download"></i>
+                                Download PDF
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <div class="preview-section">
+                <div class="preview-card">
+                    <h2>Preview</h2>
+                    <div id="resume-preview" class="preview-content">
+                        <div class="preview-placeholder">
+                            <i class="fas fa-file-alt"></i>
+                            <p>Fill out the form and click "Generate Resume" to see your preview</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Cover Letter Section -->
+    <section id="cover-letter" class="section">
+        <div class="section-header">
+            <h1>Cover Letter Builder</h1>
+            <p>Create a compelling cover letter that showcases your passion and qualifications.</p>
+        </div>
+
+        <div class="builder-container">
+            <div class="form-section">
+                <div class="form-card">
+                    <div class="form-header">
+                        <i class="fas fa-envelope"></i>
+                        <h2>Cover Letter Details</h2>
+                    </div>
+                    <form id="cover-letter-form">
+                        <!-- Personal Information -->
+                        <div class="section-divider">
+                            <i class="fas fa-user"></i>
+                            <h3>Personal Information</h3>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="cl-fullName">Full Name *</label>
+                                <input type="text" id="cl-fullName" name="fullName" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="cl-email">Email *</label>
+                                <input type="email" id="cl-email" name="email" required>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="cl-phone">Phone</label>
+                                <input type="tel" id="cl-phone" name="phone">
+                            </div>
+                            <div class="form-group">
+                                <label for="cl-address">Address</label>
+                                <input type="text" id="cl-address" name="address">
+                            </div>
+                        </div>
+
+                        <!-- Job Information -->
+                        <div class="section-divider">
+                            <i class="fas fa-building"></i>
+                            <h3>Job Information</h3>
+                        </div>
+                        <div class="form-group">
+                            <label for="company">Company Name *</label>
+                            <input type="text" id="company" name="company" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="position">Position Title *</label>
+                            <input type="text" id="position" name="position" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="hiringManager">Hiring Manager (if known)</label>
+                            <input type="text" id="hiringManager" name="hiringManager">
+                        </div>
+
+                        <!-- Content Fields -->
+                        <div class="section-divider">
+                            <i class="fas fa-edit"></i>
+                            <h3>Letter Content</h3>
+                        </div>
+                        <div class="form-group">
+                            <label for="experience">Relevant Experience</label>
+                            <textarea id="experience" name="experience" rows="4" placeholder="Describe your relevant work experience and achievements..."></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="skills">Key Skills</label>
+                            <textarea id="skills" name="skills" rows="3" placeholder="List your relevant skills and technical expertise..."></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="motivation">Why This Company/Role?</label>
+                            <textarea id="motivation" name="motivation" rows="4" placeholder="Explain your motivation for applying to this specific role and company..."></textarea>
+                        </div>
+
+                        <div class="form-actions">
+                            <button type="button" class="btn btn-primary" onclick="generateCoverLetter()">
+                                <i class="fas fa-magic"></i>
+                                Generate Cover Letter
+                            </button>
+                            <button type="button" class="btn btn-success" onclick="downloadCoverLetterPDF()" id="download-cover-letter-btn" style="display: none;">
+                                <i class="fas fa-download"></i>
+                                Download PDF
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <div class="preview-section">
+                <div class="preview-card">
+                    <h2>Preview</h2>
+                    <div id="cover-letter-preview" class="preview-content">
+                        <div class="preview-placeholder">
+                            <i class="fas fa-envelope"></i>
+                            <p>Fill out the form and click "Generate Cover Letter" to see your preview</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Loading Modal -->
+    <div id="loading-modal" class="modal">
+        <div class="modal-content">
+            <div class="loading-spinner"></div>
+            <p id="loading-text">Generating your document...</p>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="static/js/script.js"></script>
+</body>
+</html>

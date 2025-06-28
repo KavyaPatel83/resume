@@ -1,0 +1,13 @@
+{
+  "name": "resume-cover-letter-writer",
+  "version": "1.0.0",
+  "description": "AI-powered resume and cover letter builder",
+  "main": "app.py",
+  "scripts": {
+    "dev": "python app.py",
+    "start": "gunicorn app:app",
+    "build": "echo 'No build step required for Flask app'"
+  },
+  "dependencies": {},
+  "devDependencies": {}
+}
